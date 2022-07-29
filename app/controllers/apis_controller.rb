@@ -19,6 +19,8 @@ class ApisController < ApplicationController
             "client_x509_cert_url" => ENV["client_x509_cert_url"]
         }
 
+        render plain: credentials_hash.to_json
+
         firestore = Google::Cloud::Firestore.new(project_id: ENV["project_id"], credentials: credentials_hash)
         doc_ref = firestore.doc("USER/qs2OVnoz0iYpuTPfnuJv") # 読み込み先パスを指定
         document = doc_ref.get
@@ -34,7 +36,7 @@ class ApisController < ApplicationController
             end
         end
         
-        render plain: data.keys
+        # render plain: data.keys
     end
     
 end
