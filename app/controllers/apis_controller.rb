@@ -30,7 +30,7 @@ class ApisController < ApplicationController
     end
 
     def top
-        if params[:mail_address].blank? || params[:gcf_token]
+        if params[:mail_address].blank? || params[:gcf_token].blank?
             render json: {}
             return
         end
@@ -59,6 +59,8 @@ class ApisController < ApplicationController
             user.save
         end
         
+        logger.debug is_ok
+
         if is_ok
             render json: user.out.to_json
         else
