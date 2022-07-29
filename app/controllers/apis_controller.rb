@@ -31,7 +31,7 @@ class ApisController < ApplicationController
 
     def top
         if params[:mail_address].blank? || params[:gcf_token]
-            render json: {}            
+            render json: {}
             return
         end
         
@@ -42,10 +42,10 @@ class ApisController < ApplicationController
         doc_ref = firestore.doc("USER/qs2OVnoz0iYpuTPfnuJv") # 読み込み先パスを指定
         document = doc_ref.get
         data = document.data.stringify_keys
-        logger.debug data.keys
-        data.keys.each do |key, value|
+        data.each do |key, value|
+            logger.debug value
             if key == params[:mail_address]
-                if conditionvalue.token == params[:gcf_token]
+                if value[:token] == params[:gcf_token]
                     is_ok = true
                 end
                 break
