@@ -30,7 +30,7 @@ class ApisController < ApplicationController
     end
 
     def top
-        if params[:mail_address].blank? || params[:token]
+        if params[:mail_address].blank? || params[:gcf_token]
             render json: {}            
             return
         end
@@ -45,7 +45,7 @@ class ApisController < ApplicationController
         logger.debug data.keys
         data.keys.each do |key, value|
             if key == params[:mail_address]
-                if conditionvalue.token == params[:token]
+                if conditionvalue.token == params[:gcf_token]
                     is_ok = true
                 end
                 break
