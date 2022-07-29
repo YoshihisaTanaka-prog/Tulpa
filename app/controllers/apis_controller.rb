@@ -2,15 +2,17 @@ require 'google/cloud/firestore'
 
 class ApisController < ApplicationController
 
+    # https://n-srcoukfhwnkmi2hcs2nesuepjujifnywiaaqabi-0lu-script.googleusercontent.com/
+
     def test
-        base_uri = 'https://yoshihi-server-tulpa.firebaseio.com/'
         # 参照元↓
+        # https://qiita.com/yuki0101/items/aa414de0d4a0d1d76869
         # https://googleapis-dev.translate.goog/ruby/google-cloud-firestore/latest/Google/Cloud/Firestore.html?_x_tr_sl=en&_x_tr_tl=ja&_x_tr_hl=ja&_x_tr_pto=wapp#new-class_method
+        # https://tech.quartetcom.co.jp/2018/09/06/symfony-dotenv-values-including-newlines/
+
         credentials_hash = JSON.parse(ENV['GOOGLE_CLOUD_CREDENTIALS_JSON'])
 
-        # render plain: credentials_hash.to_json
-
-        firestore = Google::Cloud::Firestore.new(project_id: ENV["project_id"], credentials: credentials_hash)
+        firestore = Google::Cloud::Firestore.new(project_id: credentials_hash["project_id"], credentials: credentials_hash)
         doc_ref = firestore.doc("USER/qs2OVnoz0iYpuTPfnuJv") # 読み込み先パスを指定
         document = doc_ref.get
         data = document.data.stringify_keys
