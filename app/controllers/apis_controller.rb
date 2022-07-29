@@ -26,8 +26,50 @@ class ApisController < ApplicationController
                 logger.debug user.mail_address
             end
         end
-        
         render plain: data
     end
+
+    def top
+        if params[:mail_address].blank? || params[:token]
+            render json: {}            
+            return
+        end
+        
+        is_ok = false
+
+        credentials_hash = JSON.parse(ENV['GOOGLE_CLOUD_CREDENTIALS_JSON'])
+        firestore = Google::Cloud::Firestore.new(project_id: credentials_hash["project_id"], credentials: credentials_hash)
+        doc_ref = firestore.doc("USER/qs2OVnoz0iYpuTPfnuJv") # 読み込み先パスを指定
+        document = doc_ref.get
+        data = document.data.stringify_keys
+        logger.debug data.keys
+        data.keys.each do |key, value|
+            if key == params[:mail_address]
+                if conditionvalue.token == params[:token]
+                    is_ok = true
+                end
+                break
+            end
+        end
+
+        user = User.find_by(mail_address: params[:mail_address])
+        if user.blank?
+            user = User.new()
+            user.mail_address = params[:mail_address]
+            user.save
+        end
+        
+        if is_ok
+            render json: user.out.to_json
+        else
+            render json: {}
+        end
+        
+    end
+
+    def dummy
+        render json: {}
+    end
+    
     
 end
