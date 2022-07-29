@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @angle %>
+
+<div>
+  <%= link_to "Edit this angle", edit_angle_path(@angle) %> |
+  <%= link_to "Back to angles", angles_path %>
+
+  <%= button_to "Destroy this angle", @angle, method: :delete %>
+</div>

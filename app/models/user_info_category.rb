@@ -1,0 +1,2 @@
+class UserInfoCategory < ApplicationRecord
+end

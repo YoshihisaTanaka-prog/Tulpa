@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Tulpa users</h1>
+
+<div id="tulpa_users">
+  <% @tulpa_users.each do |tulpa_user| %>
+    <%= render tulpa_user %>
+    <p>
+      <%= link_to "Show this tulpa user", tulpa_user %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New tulpa user", new_tulpa_user_path %>

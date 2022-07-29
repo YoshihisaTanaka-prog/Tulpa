@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Angles</h1>
+
+<div id="angles">
+  <% @angles.each do |angle| %>
+    <%= render angle %>
+    <p>
+      <%= link_to "Show this angle", angle %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New angle", new_angle_path %>

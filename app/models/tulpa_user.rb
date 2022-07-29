@@ -1,0 +1,2 @@
+class TulpaUser < ApplicationRecord
+end
