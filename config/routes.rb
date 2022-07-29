@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :angles
   resources :tulpa_users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
+  get "test", to: "apis#test"
   # Defines the root path route ("/")
   root "diaries#index"
 end
