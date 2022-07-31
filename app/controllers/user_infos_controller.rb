@@ -58,7 +58,13 @@ class UserInfosController < ApplicationController
 
   # DELETE /user_infos/1 or /user_infos/1.json
   def destroy
-    @user_info.destroy
+    unless @user_info.is_main
+      tulpa = TulpaUser.find_by(id: @user_info.user_id)
+      unless tulpa.nil?
+        tulpa.destroy
+      end
+      @user_info.destroy
+    end
 
     respond_to do |format|
       format.html { redirect_to user_infos_url, notice: "User info was successfully destroyed." }
