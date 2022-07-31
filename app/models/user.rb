@@ -16,7 +16,7 @@ class User < ApplicationRecord
         tulpas.each do |tulpa|
             ret +=[tulpa.out]
         end
-        return {mailAddress: self.mail_address, users: ret}
+        return ret
     end
     
 end

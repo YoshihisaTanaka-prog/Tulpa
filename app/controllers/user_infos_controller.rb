@@ -1,5 +1,6 @@
 class UserInfosController < ApplicationController
   before_action :set_user_info, only: %i[ show edit update destroy ]
+  before_action :confirm_fb_token
 
   # GET /user_infos or /user_infos.json
   def index
@@ -21,12 +22,20 @@ class UserInfosController < ApplicationController
 
   # POST /user_infos or /user_infos.json
   def create
+
+    tulpa = TulpaUser.new
+    tulpa.user_id = @user.id
+    tulpa.save
+
     @user_info = UserInfo.new(user_info_params)
+    @user_info.is_main = false
+    @user_info.user_id = tulpa.id
 
     respond_to do |format|
       if @user_info.save
-        format.html { redirect_to user_info_url(@user_info), notice: "User info was successfully created." }
-        format.json { render :show, status: :created, location: @user_info }
+        format.html { render plain: tulpa.out }
+        format.json { render json: {token: @token, newUserInfo: tulpa.out.to_json} }
+        
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @user_info.errors, status: :unprocessable_entity }
@@ -65,6 +74,6 @@ class UserInfosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_info_params
-      params.require(:user_info).permit(:is_main, :is_need_meal, :is_need_sleep, :user_id, :name)
+      params.require(:user_info).permit(:is_need_meal, :is_need_sleep, :name)
     end
 end

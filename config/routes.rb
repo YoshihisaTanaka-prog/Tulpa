@@ -11,5 +11,6 @@ Rails.application.routes.draw do
 
   get "top", to: "apis#top"
   post "top", to: "apis#top"
+  get "test", to: "apis#test"
   root "apis#dummy"
 end
