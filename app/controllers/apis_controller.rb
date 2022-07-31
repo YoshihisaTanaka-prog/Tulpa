@@ -14,7 +14,7 @@ class ApisController < ApplicationController
     end
 
     def top
-        render json: {users: @user.out.to_json, token: @token}
+        render json: {users: @user.out, token: @token}.to_json
     end
 
     def dummy
