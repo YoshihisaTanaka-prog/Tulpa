@@ -2,9 +2,7 @@ class ApplicationController < ActionController::Base
     skip_forgery_protection
 
     def confirm_fb_token
-
         if request.xml_http_request?
-
             if params[:mail_address].blank? || params[:gcf_token].blank?
                 render json: {}
             end
@@ -48,8 +46,7 @@ class ApplicationController < ActionController::Base
             else
                 render json: {}
             end
-        end
-            
+        end        
     end
-    
+
 end

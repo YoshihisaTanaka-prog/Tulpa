@@ -58,10 +58,20 @@ class UserInfosController < ApplicationController
 
   # DELETE /user_infos/1 or /user_infos/1.json
   def destroy
-    unless @user_info.is_main
-      tulpa = TulpaUser.find_by(id: @user_info.user_id)
-      unless tulpa.nil?
-        tulpa.destroy
+    if request.xml_http_request?
+      unless @user_info.is_main
+        tulpa = TulpaUser.find_by(id: @user_info.user_id)
+        unless tulpa.nil?
+          tulpa.destroy
+        end
+        @user_info.destroy
+      end
+    else
+      unless @user_info.is_main
+        tulpa = TulpaUser.find_by(id: @user_info.user_id)
+        unless tulpa.nil?
+          tulpa.destroy
+        end
       end
       @user_info.destroy
     end
