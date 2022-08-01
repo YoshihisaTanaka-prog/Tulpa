@@ -34,7 +34,7 @@ class UserInfosController < ApplicationController
     respond_to do |format|
       if @user_info.save
         format.html { render plain: tulpa.out }
-        format.json { render json: {token: @token, newUserInfo: tulpa.out.to_json} }
+        format.json { render json: {token: @token, newUserInfo: @user_info.out.to_json} }
         
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -48,7 +48,7 @@ class UserInfosController < ApplicationController
     respond_to do |format|
       if @user_info.update(user_info_params)
         format.html { redirect_to user_info_url(@user_info), notice: "User info was successfully updated." }
-        format.json { render :show, status: :ok, location: @user_info }
+        format.json { render json: {token: @token, newUserInfo: @user_info.out.to_json} }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @user_info.errors, status: :unprocessable_entity }
