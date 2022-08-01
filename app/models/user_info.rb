@@ -7,7 +7,7 @@ class UserInfo < ApplicationRecord
             UserInfoDetail.where(user_info_id: self.id, category_id: category.id).each do |detail|
                 list.push detail.out
             end
-            output_details.push({type: category.type_name, texts: list})
+            output_details.push({typeId: category.id, typeName: category.type_name, texts: list})
         end
         return {id: self.id, name: self.name, isNeedSleep: self.is_need_sleep, isNeedMeal: self.is_need_meal, details: output_details}
     end
