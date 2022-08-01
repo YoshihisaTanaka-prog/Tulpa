@@ -14,7 +14,12 @@ class ApisController < ApplicationController
     end
 
     def top
-        render json: {users: @user.out, token: @token}.to_json
+        categories = UserInfoCategory.all
+        output_categories = []
+        categories.each do |category|
+            output_categories.push category.out
+        end
+        render json: {users: @user.out, token: @token, categories: output_categories}.to_json
     end
 
     def dummy
