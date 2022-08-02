@@ -18,7 +18,7 @@ class ApisController < ApplicationController
         output_categories = {}
         categories.each do |category|
             category.out.each do |key value|
-                output_categories[key] value
+                output_categories[key] = value
             end
         end
         render json: {users: @user.out, token: @token, categories: output_categories}.to_json
