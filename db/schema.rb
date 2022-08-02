@@ -13,6 +13,8 @@
 ActiveRecord::Schema[7.0].define(version: 2022_07_28_213841) do
   create_table "angles", force: :cascade do |t|
     t.string "name"
+    t.integer "last_user_info_id"
+    t.boolean "is_include_me", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

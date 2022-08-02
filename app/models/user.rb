@@ -11,9 +11,14 @@ class User < ApplicationRecord
             user_info.is_need_sleep = true
             user_info.save
         end
-        ret = [user_info.out]
+        ret = {}
+        user_info.each do |key, value|
+            ret[key] = value
+        end
         tulpas.each do |tulpa|
-            ret +=[tulpa.out]
+            tulpa.our.each do |key, value|
+                ret[key] = value
+            end
         end
         return ret
     end
