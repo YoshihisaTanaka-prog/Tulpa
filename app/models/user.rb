@@ -12,7 +12,7 @@ class User < ApplicationRecord
             user_info.save
         end
         ret = {}
-        user_info.each do |key, value|
+        user_info.out.each do |key, value|
             ret[key] = value
         end
         tulpas.each do |tulpa|
