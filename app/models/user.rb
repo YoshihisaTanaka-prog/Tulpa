@@ -16,7 +16,7 @@ class User < ApplicationRecord
             ret[key] = value
         end
         tulpas.each do |tulpa|
-            tulpa.our.each do |key, value|
+            tulpa.out.each do |key, value|
                 ret[key] = value
             end
         end
