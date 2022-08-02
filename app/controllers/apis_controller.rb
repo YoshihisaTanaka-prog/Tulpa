@@ -17,7 +17,7 @@ class ApisController < ApplicationController
         categories = UserInfoCategory.all
         output_categories = {}
         categories.each do |category|
-            category.out.each do |key value|
+            category.out.each do |key, value|
                 output_categories[key] = value
             end
         end
