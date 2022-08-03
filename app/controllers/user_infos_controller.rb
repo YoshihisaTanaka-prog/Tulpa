@@ -23,13 +23,9 @@ class UserInfosController < ApplicationController
   # POST /user_infos or /user_infos.json
   def create
 
-    tulpa = TulpaUser.new
-    tulpa.user_id = @user.id
-    tulpa.save
-
     @user_info = UserInfo.new(user_info_params)
     @user_info.is_main = false
-    @user_info.user_id = tulpa.id
+    @user_info.user_id = @user.id
 
     respond_to do |format|
       if @user_info.save
