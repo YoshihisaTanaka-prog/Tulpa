@@ -6,6 +6,7 @@ class CreateUserInfos < ActiveRecord::Migration[7.0]
       t.boolean :is_need_sleep
       t.integer :user_id
       t.string :name
+      t.boolean :is_shared, null: false, default: false
 
       t.timestamps
     end

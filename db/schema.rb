@@ -52,6 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_03_022236) do
     t.boolean "is_need_sleep"
     t.integer "user_id"
     t.string "name"
+    t.boolean "is_shared", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -59,7 +60,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_03_022236) do
   create_table "users", force: :cascade do |t|
     t.string "mail_address"
     t.integer "last_user_info_id"
-    t.boolean "is_include_me", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
