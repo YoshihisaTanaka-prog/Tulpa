@@ -10,11 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_28_213841) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_03_022236) do
   create_table "angles", force: :cascade do |t|
     t.string "name"
-    t.integer "last_user_info_id"
-    t.boolean "is_include_me", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -26,8 +24,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_28_213841) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "tulpa_users", force: :cascade do |t|
-    t.integer "user_id"
+  create_table "images", force: :cascade do |t|
+    t.string "image"
+    t.integer "user_info_id"
+    t.integer "angle_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -58,6 +58,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_28_213841) do
 
   create_table "users", force: :cascade do |t|
     t.string "mail_address"
+    t.integer "last_user_info_id"
+    t.boolean "is_include_me", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

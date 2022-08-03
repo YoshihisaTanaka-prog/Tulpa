@@ -60,18 +60,17 @@ class UserInfosController < ApplicationController
   def destroy
     if request.xml_http_request?
       unless @user_info.is_main
-        tulpa = TulpaUser.find_by(id: @user_info.user_id)
-        unless tulpa.nil?
-          tulpa.destroy
+        Diary.where(user_info_id: @user_info.id).each do |diary|
+          diary.destroy
+        end
+        Image.where(user_info_id: @user_info.id).each do |image|
+          image.destroy
         end
         @user_info.destroy
       end
     else
-      unless @user_info.is_main
-        tulpa = TulpaUser.find_by(id: @user_info.user_id)
-        unless tulpa.nil?
-          tulpa.destroy
-        end
+      Diary.where(user_info_id: @user_info.id).each do |diary|
+        diary.destroy
       end
       @user_info.destroy
     end

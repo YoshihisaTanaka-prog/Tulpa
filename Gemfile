@@ -10,6 +10,8 @@ gem "devise"
 gem 'dotenv-rails'
 gem 'google-cloud-firestore'
 gem 'rack-cors'
+gem 'carrierwave'
+gem 'rmagick'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"

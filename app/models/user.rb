@@ -15,7 +15,7 @@ class User < ApplicationRecord
         user_info.out.each do |key, value|
             ret[key] = value
         end
-        tulpas.each do |tulpa|
+        UserInfo.where(user_id: self.id, is_main: false).order(:id).each do |tulpa|
             tulpa.out.each do |key, value|
                 ret[key] = value
             end
