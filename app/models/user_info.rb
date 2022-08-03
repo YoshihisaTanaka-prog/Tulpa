@@ -11,7 +11,7 @@ class UserInfo < ApplicationRecord
         end
         diaries = {}
         Diary.where(user_info_id: self.id).order(:created_at).each do |diary|
-            diaries[diary.id.to_s] = diary.text
+            diaries[diary.id.to_s] = {text: diary.text, created: diary.created_at}
         end
         return {self.id.to_s => {name: self.name, isNeedSleep: self.is_need_sleep, isNeedMeal: self.is_need_meal, isMain: self.is_main, details: details, diaries: diaries}}
     end
