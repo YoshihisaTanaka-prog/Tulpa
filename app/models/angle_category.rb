@@ -5,7 +5,7 @@ class AngleCategory < ApplicationRecord
         ret = []
         angle_ids.each do |id|
             angle = Angle.find_by(id: id)
-            unless angle.blank:
+            unless angle.blank?
                 ret.push({name: angle.name})
             end
         end
