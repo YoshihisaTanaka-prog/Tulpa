@@ -10,6 +10,7 @@ gem "devise"
 gem 'dotenv-rails'
 gem 'google-cloud-firestore'
 gem 'rack-cors'
+gem 'cloudinary'
 gem 'carrierwave'
 gem 'rmagick'
 

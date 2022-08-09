@@ -1,0 +1,2 @@
+class AngleAngleCategory < ApplicationRecord
+end

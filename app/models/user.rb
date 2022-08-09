@@ -1,5 +1,14 @@
 class User < ApplicationRecord
 
+    def user_ids
+        users = UserInfo.where(user_id: self.id).order(:id)
+        ret = []
+        users.each do |u|
+            ret.push u.id
+        end
+        return ret
+    end
+
     def out
         user_info = UserInfo.find_by(user_id: self.id, is_main: true)
         if user_info.nil?

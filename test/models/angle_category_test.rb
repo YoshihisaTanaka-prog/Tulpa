@@ -1,6 +1,6 @@
 require "test_helper"
 
-class TulpaUserTest < ActiveSupport::TestCase
+class AngleCategoryTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

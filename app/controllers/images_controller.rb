@@ -22,6 +22,7 @@ class ImagesController < ApplicationController
   # POST /images or /images.json
   def create
     @image = Image.new(image_params)
+    @image.user_info_id = params[:user_info_id]
 
     respond_to do |format|
       if @image.save
@@ -65,6 +66,6 @@ class ImagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def image_params
-      params.require(:image).permit(:image, :user_info_id, :angle_id)
+      params.require(:image).permit(:image, :angle_id)
     end
 end

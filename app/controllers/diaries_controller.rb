@@ -1,5 +1,6 @@
 class DiariesController < ApplicationController
   before_action :set_diary, only: %i[ show edit update destroy ]
+  before_action :confirm_fb_token
 
   # GET /diaries or /diaries.json
   def index
@@ -23,6 +24,8 @@ class DiariesController < ApplicationController
   def create
     @diary = Diary.new(diary_params)
 
+    @diary.user_info_id = params[:user_info_id]
+    
     respond_to do |format|
       if @diary.save
         format.html { redirect_to diary_url(@diary), notice: "Diary was successfully created." }
@@ -65,6 +68,6 @@ class DiariesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def diary_params
-      params.require(:diary).permit(:user_info_id, :text)
+      params.require(:diary).permit(:text)
     end
 end

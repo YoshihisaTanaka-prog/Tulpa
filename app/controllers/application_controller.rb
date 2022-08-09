@@ -20,11 +20,18 @@ class ApplicationController < ActionController::Base
 
 
         if data[params[:mail_address]][:token] == params[:gcf_token]
+
             @user = User.find_by(mail_address: params[:mail_address])
             if @user.blank?
                 @user = User.new()
                 @user.mail_address = params[:mail_address]
                 @user.save
+            end
+
+            unless params[:user_info_id].blank?
+                unless @user.user_ids.include?(params[:user_info_id].to_i)
+                    render json: {}
+                end
             end
 
             @token = ""
