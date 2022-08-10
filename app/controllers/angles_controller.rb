@@ -13,18 +13,35 @@ class AnglesController < ApplicationController
   # GET /angles/new
   def new
     @angle = Angle.new
+    categories = AngleCategory.all.order(:id)
+    @categories = []
+    categories.each do |category|
+      @categories.push({id: category.id, name: category.name, selected: false})
+    end
   end
 
   # GET /angles/1/edit
   def edit
+    categories = AngleCategory.all.order(:id)
+    @categories = []
+    categories.each do |category|
+      aac = AngleAngleCategory.find_by(category_id: category.id, angle_id: @angle.id, is_enabled: true)
+      if aac.blank?
+        @categories.push({id: category.id, name: category.name, selected: false})
+      else
+        @categories.push({id: category.id, name: category.name, selected: true})
+      end
+    end
   end
 
   # POST /angles or /angles.json
   def create
+    logger.debug params
     @angle = Angle.new(angle_params)
 
     respond_to do |format|
       if @angle.save
+        @angle.set_categories params[:categories]
         format.html { redirect_to angle_url(@angle), notice: "Angle was successfully created." }
         format.json { render :show, status: :created, location: @angle }
       else
@@ -36,6 +53,7 @@ class AnglesController < ApplicationController
 
   # PATCH/PUT /angles/1 or /angles/1.json
   def update
+    @angle.set_categories params[:categories]
     respond_to do |format|
       if @angle.update(angle_params)
         format.html { redirect_to angle_url(@angle), notice: "Angle was successfully updated." }
@@ -64,8 +82,6 @@ class AnglesController < ApplicationController
     end
 
     def set_categories
-      categories = AngleCategory.all
-      
     end
 
     # Only allow a list of trusted parameters through.

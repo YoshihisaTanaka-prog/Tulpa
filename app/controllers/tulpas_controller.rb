@@ -14,14 +14,17 @@ class TulpasController < ApplicationController
     end
 
     def main
-        categories = UserInfoCategory.all
-        output_categories = {}
-        categories.each do |category|
+        categories = {}
+        UserInfoCategory.all.order(:id).each do |category|
             category.out.each do |key, value|
-                output_categories[key] = value
+                categories[key] = value
             end
         end
-        render json: {users: @user.out, token: @token, categories: output_categories}.to_json
+        angle_categories = {}
+        AngleCategory.all.order(:id).each do |ac|
+            angle_categories[ac.id] = ac.out
+        end
+        render json: {users: @user.out, token: @token, categories: categories, angle_categories: angle_categories}.to_json
     end
 
     def detail
