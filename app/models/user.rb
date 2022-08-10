@@ -4,7 +4,7 @@ class User < ApplicationRecord
         users = UserInfo.where(user_id: self.id).order(:id)
         ret = []
         users.each do |u|
-            ret.push u.id
+            ret.push u.id.to_s
         end
         return ret
     end
@@ -25,7 +25,7 @@ class User < ApplicationRecord
         end
         UserInfo.where(user_id: self.id, is_main: false).order(:id).each do |tulpa|
             tulpa.out.each do |key, value|
-                ret[key] = value.to_s
+                ret[key] = value
             end
         end
         return ret
