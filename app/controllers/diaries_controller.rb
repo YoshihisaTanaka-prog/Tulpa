@@ -25,7 +25,7 @@ class DiariesController < ApplicationController
     @diary = Diary.new(diary_params)
 
     respond_to do |format|
-      if @diary.save
+      if @diary.confirm_and_save @user
         format.html { redirect_to diary_url(@diary), notice: "Diary was successfully created." }
         format.json { render :show, status: :created, location: @diary }
       else
@@ -38,7 +38,7 @@ class DiariesController < ApplicationController
   # PATCH/PUT /diaries/1 or /diaries/1.json
   def update
     respond_to do |format|
-      if @diary.update(diary_params)
+      if @diary.confirm_and_update(diary_params, @user)
         format.html { redirect_to diary_url(@diary), notice: "Diary was successfully updated." }
         format.json { render :show, status: :ok, location: @diary }
       else
