@@ -24,7 +24,7 @@ class ImagesController < ApplicationController
     @image = Image.new(image_params)
 
     respond_to do |format|
-      if @image.save
+      if @image.confirm_and_save @user
         format.html { redirect_to image_url(@image), notice: "Image was successfully created." }
         format.json { render :show, status: :created, location: @image }
       else
@@ -37,7 +37,7 @@ class ImagesController < ApplicationController
   # PATCH/PUT /images/1 or /images/1.json
   def update
     respond_to do |format|
-      if @image.update(image_params)
+      if @image.confirm_and_update(image_params, @user)
         format.html { redirect_to image_url(@image), notice: "Image was successfully updated." }
         format.json { render :show, status: :ok, location: @image }
       else
