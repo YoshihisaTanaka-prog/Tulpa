@@ -9,11 +9,7 @@ class UserInfo < ApplicationRecord
             end
             details[category.id.to_s] = {typeName: category.type_name, texts: list}
         end
-        diaries = {}
-        Diary.where(user_info_id: self.id).order(:created_at).each do |diary|
-            diaries[diary.id.to_s] = {text: diary.text, created: diary.created_at}
-        end
-        return {self.id.to_s => {name: self.name, isNeedSleep: self.is_need_sleep, isNeedMeal: self.is_need_meal, isMain: self.is_main, details: details, diaries: diaries}}
+        return {self.id.to_s => {name: self.name, isNeedSleep: self.is_need_sleep, isNeedMeal: self.is_need_meal, isMain: self.is_main, details: details, diaries: {}}}
     end
     
 end

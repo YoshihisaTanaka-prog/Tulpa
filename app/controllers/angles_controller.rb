@@ -63,6 +63,11 @@ class AnglesController < ApplicationController
       @angle = Angle.find(params[:id])
     end
 
+    def set_categories
+      categories = AngleCategory.all
+      
+    end
+
     # Only allow a list of trusted parameters through.
     def angle_params
       params.require(:angle).permit(:name)

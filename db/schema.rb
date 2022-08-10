@@ -14,6 +14,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_214040) do
   create_table "angle_angle_categories", force: :cascade do |t|
     t.integer "angle_id"
     t.integer "category_id"
+    t.boolean "is_enabled", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
