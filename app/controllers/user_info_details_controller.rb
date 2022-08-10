@@ -1,5 +1,6 @@
 class UserInfoDetailsController < ApplicationController
   before_action :set_user_info_detail, only: %i[ show edit update destroy ]
+  before_action :confirm_fb_token
 
   # GET /user_info_details or /user_info_details.json
   def index
