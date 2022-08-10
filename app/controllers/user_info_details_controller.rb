@@ -24,7 +24,7 @@ class UserInfoDetailsController < ApplicationController
     @user_info_detail = UserInfoDetail.new(user_info_detail_params)
 
     respond_to do |format|
-      if @user_info_detail.save
+      if @user_info_detail.confirm_and_save( @user )
         format.html { redirect_to user_info_detail_url(@user_info_detail), notice: "User info detail was successfully created." }
         format.json { render :show, status: :created, location: @user_info_detail }
       else
@@ -37,7 +37,7 @@ class UserInfoDetailsController < ApplicationController
   # PATCH/PUT /user_info_details/1 or /user_info_details/1.json
   def update
     respond_to do |format|
-      if @user_info_detail.update(user_info_detail_params)
+      if @user_info_detail.confirm_and_update(user_info_detail_params, @user)
         format.html { redirect_to user_info_detail_url(@user_info_detail), notice: "User info detail was successfully updated." }
         format.json { render :show, status: :ok, location: @user_info_detail }
       else
