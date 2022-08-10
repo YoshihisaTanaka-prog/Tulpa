@@ -25,7 +25,7 @@ class UserInfoDetailsController < ApplicationController
     @user_info_detail = UserInfoDetail.new(user_info_detail_params)
 
     respond_to do |format|
-      if @user_info_detail.confirm_and_save( @user )
+      if @user_info_detail.confirm_and_save( user_info_params, @user )
         format.html { redirect_to user_info_detail_url(@user_info_detail), notice: "User info detail was successfully created." }
         format.json { render :show, status: :created, location: @user_info_detail }
       else

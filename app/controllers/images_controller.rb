@@ -25,7 +25,7 @@ class ImagesController < ApplicationController
     @image = Image.new(image_params)
 
     respond_to do |format|
-      if @image.confirm_and_save @user
+      if @image.confirm_and_save(image_params, @user)
         format.html { redirect_to image_url(@image), notice: "Image was successfully created." }
         format.json { render :show, status: :created, location: @image }
       else
