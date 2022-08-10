@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get "test", to: "apis#test"
   # Defines the root path route ("/")
 
-  get "tulpa-main", to: "tulpas#main"
+  post "tulpa-detail", to: "tulpa-detail"
+  post "tulpa-main", to: "tulpas#main"
+  
   root "tulpas#dummy"
 end
