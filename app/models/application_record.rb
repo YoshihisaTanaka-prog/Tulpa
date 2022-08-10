@@ -2,6 +2,7 @@ class ApplicationRecord < ActiveRecord::Base
   primary_abstract_class
 
   def confirm_and_save user
+    logger.debug user
     if user.user_ids.include?(self.user_info_id)
       return self.save
     else
