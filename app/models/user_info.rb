@@ -9,7 +9,7 @@ class UserInfo < ApplicationRecord
             end
             details[category.id.to_s] = {typeName: category.type_name, texts: list}
         end
-        return {self.id.to_s => {name: self.name, isNeedSleep: self.is_need_sleep, isNeedMeal: self.is_need_meal, isMain: self.is_main, details: details, diaries: {}}}
+        return {self.id.to_s => {name: self.name, isNeedSleep: self.is_need_sleep, isNeedMeal: self.is_need_meal, isMain: self.is_main, details: details}}
     end
     
 end

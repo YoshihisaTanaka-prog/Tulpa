@@ -28,6 +28,9 @@ class TulpasController < ApplicationController
     end
 
     def detail
+        if params[:user_info_id].blank?
+            render json: {}
+        end
         if @user.user_ids.include?( params[:user_info_id] )
             images = Image.where(user_info_id: params[:user_info_id]).order(:id)
             output_images = {}
