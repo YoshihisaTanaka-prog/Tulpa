@@ -11,7 +11,7 @@ class ApplicationRecord < ActiveRecord::Base
   end
 
   def confirm_and_update params, user
-    if user.user_ids.include?(self.user_info_id)
+    if user.user_ids.include?(params.user_info_id)
       return self.update(params)
     else
       return
