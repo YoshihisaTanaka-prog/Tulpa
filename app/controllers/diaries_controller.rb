@@ -25,7 +25,8 @@ class DiariesController < ApplicationController
     @diary = Diary.new(diary_params)
 
     respond_to do |format|
-      if @diary.confirm_and_save @user
+      # if @diary.confirm_and_save @user
+      if @diary.save
         format.html { redirect_to diary_url(@diary), notice: "Diary was successfully created." }
         format.json { render :show, status: :created, location: @diary }
       else
