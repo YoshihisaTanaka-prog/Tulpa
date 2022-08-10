@@ -24,8 +24,6 @@ class DiariesController < ApplicationController
   def create
     @diary = Diary.new(diary_params)
 
-    @diary.user_info_id = params[:user_info_id]
-    
     respond_to do |format|
       if @diary.save
         format.html { redirect_to diary_url(@diary), notice: "Diary was successfully created." }
@@ -68,6 +66,6 @@ class DiariesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def diary_params
-      params.require(:diary).permit(:text)
+      params.require(:diary).permit(:text, :user_info_id)
     end
 end

@@ -22,7 +22,6 @@ class UserInfoDetailsController < ApplicationController
   # POST /user_info_details or /user_info_details.json
   def create
     @user_info_detail = UserInfoDetail.new(user_info_detail_params)
-    @user_info_detail.user_info_id = params[:user_info_id]
 
     respond_to do |format|
       if @user_info_detail.save
@@ -66,6 +65,6 @@ class UserInfoDetailsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_info_detail_params
-      params.require(:user_info_detail).permit(:text, :category_id)
+      params.require(:user_info_detail).permit(:text, :category_id, :user_info_id)
     end
 end

@@ -28,12 +28,6 @@ class ApplicationController < ActionController::Base
                 @user.save
             end
 
-            unless params[:user_info_id].blank?
-                unless @user.user_ids.include?(params[:user_info_id].to_i)
-                    render json: {}
-                end
-            end
-
             @token = ""
             for num in 1..50 do
                 r = rand 62
