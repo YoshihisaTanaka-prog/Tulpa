@@ -1,7 +1,7 @@
 require 'google/cloud/firestore'
 
 class TulpasController < ApplicationController
-    before_action :confirm_fb_token, only: [:top, :detail]
+    before_action :confirm_fb_token, only: [:main, :detail]
 
     def test
         ret = []
